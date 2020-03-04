@@ -9,7 +9,7 @@
 - data wystawienia : span.review-time > time ["datetime"] - pierwsze wystąpienie
 - data zakupu : span.review-time > time ["datetime"] - drugie wystąpienie
 - przydatna : button.votes-yes["data-total-vote"]
-- nieprzydatna : button.votes-yes["data-total-vote"]
+- nieprzydatna : button.votes-no["data-total-vote"]
 - treść : p.product-review-body
 - wady : div.cons-cell > ul
 - zalety : div.pros-cell > ul
