@@ -1,5 +1,5 @@
 # CeneoScraper11S
-# Etap 1 - pobranie pojedynczej opinii 
+## Etap 1 - pobranie pojedynczej opinii 
 - opinia : li.review-box
 - identyfikator : li.review-box["data-entry-id"]
 - autor : div.reviewer-name-line
@@ -13,3 +13,8 @@
 - treść : p.product-review-body
 - wady : div.cons-cell > ul
 - zalety : div.pros-cell > ul
+## Etap 2 - pobranie wszystkich opinii z pojedynczej strony
+- zapis składowych opinii do złożonej struktury danych
+## Etap 3 - pobranie wszystkich opinii o pojedynczym produkcie
+- sposób przechodzenia po kolejnych stronach z opiniami
+- eksport opinii do pliku (.csv lub .xlsx lub .json)
