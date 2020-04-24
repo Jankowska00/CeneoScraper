@@ -65,7 +65,7 @@ while url is not None:
         features["purchased"] = True if features['purchased'] == 'Opinia potwierdzona zakupem' else False
         features["useful"] = int(features["useful"])
         features["useless"] = int(features["useless"])
-        features["content"] = features["content"] = remove_whitespaces(features["constent"])
+        features["content"] = features["content"] = remove_whitespaces(features["content"])
         features["pros"] = remove_whitespaces(features["pros"])
         features["cons"] = remove_whitespaces(features["cons"])
         
