@@ -16,19 +16,22 @@ def about():
     content = ''
     with open('README.md', 'r', encoding='UTF-8') as f:
         content = f.read()
-    return render_template('about.html', text = content)
+    return render_template('about.html', text=content)
 
-@app.route('/extract')
+@app.route('/extract', methods = ['POST', 'GET'])
 def extract():
-    if request.method == 'POST':
-        return "Przesłano formularz"
     form = ProductForm()
+    if form.validate_on_submit():
+        return "Przesłano formularz"
     return render_template('extract.html', form = form)
    
 
 @app.route('/products')
 def products():
     pass
+
+@app.route('/product/<product_id>')
+def product():
 
 @app.route('/analyzer/<product_id>')
 def analyzer():
