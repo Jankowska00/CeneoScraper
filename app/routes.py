@@ -4,6 +4,7 @@ from flaskext.markdown import Markdown
 from app.forms import ProductForm
 from app.models import Product, Opinion
 import requests
+import pandas as pd
 app.config['SECRET_KEY'] = "Tajemniczy_mysi_sprzęt"
 
 Markdown(app)
@@ -25,7 +26,7 @@ def extract():
     form = ProductForm()
     if form.validate_on_submit():
         page_response = requests.get("https://www.ceneo.pl/"+request.form['product_code'])
-        if  page_response.status_code == 200:
+        if page_response.status_code == 200:
             product = Product(request.form['product_code'])
             product.extract_product()
             product.save_product()
@@ -42,9 +43,16 @@ def products():
 
 @app.route('/product/<product_id>')
 def product(product_id):
-    product = Product()
-    product.read_product(product_id)
-    return product
+    product = Product(product_id)
+    product.read_product()
+    opinions = pd.DataFrame.from_records([opinion.__dict__() for opinion in product.opinions])
+    opinions["stars"] = opinions["stars"].map(lambda x: float(x.split("/")[0].replace(",", ".")))
+    return render_template("product.html", tables = [
+        opinions.to_html(
+            classes='table table-striped table-dark table-sm table-responsive',
+            table_id='opinions'
+        )
+    ])
 
 @app.route('/analyzer/<product_id>')
 def analyzer():
